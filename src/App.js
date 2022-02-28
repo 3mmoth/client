@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/HeaderComponent'
+import { Main } from './components/MainComponent'
+import { Albums } from './components/albums/AlbumsComponent'
+import { Album } from './components/albums/AlbumComponent'
+import { Band } from './components/bands/BandComponent'
+import { Bands } from './components/bands/BandsComponent'
+import { Reviews } from './components/reviews/Reviews'
+
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Router>
+     {/* <div className="App"> */}
+      <Header />
+      <Switch>
+        <Route exact path="/" component= {withRouter(Main)}/>
+        <Route exact path="/albums" component = {withRouter(Albums)} />
+        <Route exact path="/albums/:id" component={withRouter(Album)} />
+        <Route exact path="/bands" component ={withRouter(Bands)} />
+        <Route exact path="/bands/:id" component= {withRouter(Band)} />
+        <Route exact path="/reviews/:id" component ={withRouter(Reviews)} />
+      </Switch>
+     {/* </div> */}
+   </Router>
   );
 }
 
